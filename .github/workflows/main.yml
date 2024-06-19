@@ -1,0 +1,38 @@
+name: checks
+on: [pull_request, workflow_dispatch]
+defaults:
+    run:
+        shell: bash
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v2
+
+            - name: Install Rust toolchain
+              uses: actions-rs/toolchain@v1
+              with:
+                toolchain: stable
+                components: clippy
+
+            - name: Install just
+              uses: extractions/setup-just@v1
+              with:
+                just-version: 0.10.5
+
+            - name: Run lints
+              run: just lint-nofix
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v2
+
+            - name: Install Rust toolchain
+              uses: actions-rs/toolchain@v1
+              with:
+                toolchain: stable
+
+            - name: Run tests
+              run: cargo test
