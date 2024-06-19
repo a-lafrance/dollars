@@ -3,5 +3,11 @@ name = "dollars"
 version = "0.0.1"
 edition = "2021"
 
+authors = ["Arthur Lafrance <lafrancearthur@gmail.com>"]
+description = "A simple dollar value in Rust"
+license = "MIT"
+repository = "https://github.com/a-lafrance/dollars"
+keywords = ["dollars", "money"]
+
 [dependencies]
 thiserror = "1.0.59"
